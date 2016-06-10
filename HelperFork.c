@@ -18,7 +18,7 @@ void SetUpArray(int *mergeArray, int *count) {
 
 void ForkMergeSort(int *mergeArray, int left, int right, int parentPipe[2]) {
    int middle = (left + right) / 2;
-   int leftPid, rightPid, leftPipe[2], rightPipe[2], numElements = right - left;
+   int leftPid, rightPid, leftPipe[2], rightPipe[2];
 
    if ((right - left) > 1) {
 
@@ -61,11 +61,10 @@ void ForkMergeSort(int *mergeArray, int left, int right, int parentPipe[2]) {
    }
    waitpid(leftPid, NULL, 0);
    waitpid(rightPid, NULL, 0);
-   ForkMerge(parentPipe, leftPipe, rightPipe, numElements);  	
+   ForkMerge(parentPipe, leftPipe, rightPipe);  	
 }
 
-void ForkMerge(int parentPipe[2], int leftPipe[2], int rightPipe[2],
- int numElements) {
+void ForkMerge(int parentPipe[2], int leftPipe[2], int rightPipe[2]) {
    int tempL, tempR, leftRead = 0, rightRead = 0;
 
    leftRead = read(leftPipe[0], &tempL, sizeof(int));
