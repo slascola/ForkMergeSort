@@ -35,6 +35,5 @@ int main(int argc, char *argv[]) {
       fprintf(stderr, "Bad fork call on parent\n");
       exit(1);
    }
-   
 	return 0;
 }
